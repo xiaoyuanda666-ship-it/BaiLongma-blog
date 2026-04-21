@@ -1,7 +1,8 @@
+import type { Route } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const links = [
+const links: Array<{ href: Route; label: string }> = [
   { href: '/', label: '官网' },
   { href: '/blog', label: '博客' },
   { href: '/docs', label: '文档' },
