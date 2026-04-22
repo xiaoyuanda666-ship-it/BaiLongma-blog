@@ -2,6 +2,7 @@ import type { Route } from 'next'
 import Link from 'next/link'
 
 import { getFeaturedPosts, getPublishedDocs, getSiteSettings } from '@/lib/content'
+import { getMediaUrl } from '@/lib/format'
 
 export const dynamic = 'force-dynamic'
 
@@ -103,6 +104,15 @@ export default async function HomePage() {
           {featuredPosts.length > 0 ? (
             featuredPosts.map((post: any) => (
               <article key={post.id} className="glass-card">
+                {getMediaUrl(post.coverImage) ? (
+                  <div className="feature-cover">
+                    <img
+                      src={getMediaUrl(post.coverImage) || ''}
+                      alt={post.coverImage?.alt || post.title}
+                      loading="lazy"
+                    />
+                  </div>
+                ) : null}
                 <span className="mini-kicker">{post.category}</span>
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>

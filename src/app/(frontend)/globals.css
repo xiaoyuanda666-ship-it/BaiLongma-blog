@@ -181,7 +181,6 @@ a {
 .listing-card,
 .doc-card,
 .article-card,
-.doc-sidebar,
 .cta-block {
   border: 1px solid rgba(23, 36, 51, 0.1);
   background: var(--card);
@@ -380,6 +379,37 @@ a {
   padding: 22px;
 }
 
+.feature-cover,
+.listing-cover,
+.article-cover {
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(23, 36, 51, 0.08);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.feature-cover {
+  margin: -4px 0 14px;
+}
+
+.listing-cover {
+  margin: -4px 0 16px;
+}
+
+.article-cover {
+  margin: 18px 0 22px;
+  border-radius: 28px;
+}
+
+.feature-cover img,
+.listing-cover img,
+.article-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
 .glass-card h3,
 .listing-card h2,
 .doc-sidebar h3 {
@@ -464,15 +494,113 @@ a {
 
 .article-body {
   display: grid;
-  gap: 18px;
+  gap: 16px;
   margin-top: 28px;
+  color: var(--ink);
+  font-family: "PingFang SC", "Noto Sans SC", "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 .article-body p {
   margin: 0;
-  line-height: 1.9;
-  font-size: 17px;
+  line-height: 1.85;
+  font-size: 15px;
+  letter-spacing: 0.01em;
   white-space: pre-wrap;
+}
+
+.article-body > :first-child {
+  margin-top: 0;
+}
+
+.article-body > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-h1,
+.markdown-h2,
+.markdown-h3 {
+  font-family: "PingFang SC", "Noto Sans SC", "Source Han Sans SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  font-weight: 700;
+  margin: 14px 0 2px;
+}
+
+.markdown-h1 {
+  font-size: clamp(28px, 3vw, 32px);
+}
+
+.markdown-h2 {
+  font-size: clamp(22px, 2.3vw, 24px);
+  margin-top: 18px;
+}
+
+.markdown-h3 {
+  font-size: clamp(18px, 1.9vw, 20px);
+  margin-top: 16px;
+}
+
+.markdown-list {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.markdown-list-item + .markdown-list-item {
+  margin-top: 6px;
+}
+
+.markdown-quote {
+  margin: 0;
+  padding: 14px 16px;
+  border-left: 3px solid rgba(27, 77, 67, 0.22);
+  border-radius: 0 14px 14px 0;
+  background: rgba(17, 24, 39, 0.035);
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.markdown-inline-code,
+.markdown-code {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.markdown-inline-code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(23, 36, 51, 0.06);
+  font-size: 0.86em;
+}
+
+.markdown-pre {
+  margin: 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  border-radius: 14px;
+  background: rgba(23, 36, 51, 0.9);
+  color: #f7f2e8;
+}
+
+.markdown-pre .markdown-code {
+  display: block;
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.article-body a {
+  color: var(--forest);
+  text-decoration: underline;
+  text-decoration-color: rgba(27, 77, 67, 0.2);
+  text-underline-offset: 3px;
+}
+
+.article-body strong {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .article-media {
@@ -513,28 +641,122 @@ a {
   border: 0;
 }
 
-.doc-detail-shell {
-  align-items: flex-start;
+.article-video {
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(23, 36, 51, 0.08);
+  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.doc-sidebar {
+.article-video video {
+  display: block;
+  width: 100%;
+  background: #000;
+}
+
+.doc-detail-shell {
+  align-items: stretch;
+}
+
+.doc-detail-frame {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 0;
+  width: 100%;
+  border: 1px solid rgba(23, 36, 51, 0.1);
+  background: var(--card);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+  border-radius: 34px;
+}
+
+.doc-outline {
   position: sticky;
   top: 24px;
-  width: min(280px, 100%);
-  padding: 22px;
-  border-radius: 26px;
+  align-self: start;
+  min-width: 0;
+  border-right: 1px solid rgba(23, 36, 51, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.12));
+  border-top-left-radius: 34px;
+  border-bottom-left-radius: 34px;
 }
 
-.doc-sidebar-links {
+.doc-outline-inner {
+  display: grid;
+  gap: 22px;
+  padding: 28px 22px 32px;
+}
+
+.doc-outline-header {
+  display: grid;
+  gap: 6px;
+}
+
+.doc-outline-header h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.doc-outline-groups {
+  display: grid;
+  gap: 18px;
+}
+
+.doc-outline-group {
   display: grid;
   gap: 10px;
-  margin-top: 16px;
 }
 
-.doc-sidebar-links a,
-.doc-sidebar-links p {
+.doc-outline-group-link,
+.doc-outline-item {
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.doc-outline-group-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.doc-outline-items {
+  display: grid;
+  gap: 8px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(23, 36, 51, 0.08);
+}
+
+.doc-outline-item {
   color: var(--muted);
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.doc-outline-group-link:hover,
+.doc-outline-item:hover {
+  color: var(--forest);
+  transform: translateX(1px);
+}
+
+.doc-article {
+  min-width: 0;
+  padding: 32px 42px 40px;
+  border-top-right-radius: 34px;
+  border-bottom-right-radius: 34px;
+}
+
+.doc-article h1 {
+  margin: 18px 0 14px;
+  font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+  font-size: clamp(34px, 5vw, 58px);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 .docs-section + .docs-section {
@@ -578,9 +800,20 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .doc-sidebar {
+  .doc-detail-frame {
+    grid-template-columns: 1fr;
+  }
+
+  .doc-outline {
     position: static;
-    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid rgba(23, 36, 51, 0.08);
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 34px;
+  }
+
+  .doc-outline-inner {
+    padding-bottom: 18px;
   }
 }
 
@@ -595,9 +828,16 @@ a {
   .listing-card,
   .doc-card,
   .article-card,
-  .doc-sidebar,
   .cta-block {
     padding: 20px;
+  }
+
+  .doc-article {
+    padding: 24px 20px 28px;
+  }
+
+  .doc-outline-inner {
+    padding: 22px 20px 20px;
   }
 
   .main-nav,

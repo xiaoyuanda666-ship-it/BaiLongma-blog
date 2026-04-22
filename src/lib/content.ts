@@ -32,7 +32,7 @@ export const getPublishedPosts = cache(async () => {
     const payload = await getClient()
     const result = await payload.find({
       collection: 'posts',
-      depth: 0,
+      depth: 1,
       draft: false,
       limit: 100,
       sort: '-publishedAt',
@@ -54,7 +54,7 @@ export const getFeaturedPosts = cache(async () => {
     const payload = await getClient()
     const result = await payload.find({
       collection: 'posts',
-      depth: 0,
+      depth: 1,
       draft: false,
       limit: 3,
       sort: '-publishedAt',
@@ -85,7 +85,7 @@ export const getPostBySlug = cache(async (slug: string) => {
     const payload = await getClient()
     const result = await payload.find({
       collection: 'posts',
-      depth: 0,
+      depth: 1,
       draft: false,
       limit: 1,
       where: {

@@ -2,7 +2,7 @@ import type { Route } from 'next'
 import Link from 'next/link'
 
 import { getPublishedPosts } from '@/lib/content'
-import { formatDate } from '@/lib/format'
+import { formatDate, getMediaUrl } from '@/lib/format'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,6 +20,11 @@ export default async function BlogPage() {
       <div className="listing-grid">
         {posts.map((post: any) => (
           <article key={post.id} className="listing-card">
+            {getMediaUrl(post.coverImage) ? (
+              <div className="listing-cover">
+                <img src={getMediaUrl(post.coverImage) || ''} alt={post.coverImage?.alt || post.title} loading="lazy" />
+              </div>
+            ) : null}
             <div className="listing-meta">
               <span>{post.category}</span>
               <span>{formatDate(post.publishedAt)}</span>

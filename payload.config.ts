@@ -6,6 +6,7 @@ import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
 import { Docs } from './src/collections/Docs'
+import { Media } from './src/collections/Media'
 import { Posts } from './src/collections/Posts'
 import { Users } from './src/collections/Users'
 import { SiteSettings } from './src/globals/SiteSettings'
@@ -28,7 +29,7 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Posts, Docs],
+  collections: [Users, Media, Posts, Docs],
   globals: [SiteSettings],
   db: sqliteAdapter({
     client: {

@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload'
+﻿import type { CollectionConfig } from 'payload'
 
 import { formatSlug } from '@/lib/slug'
 
@@ -56,6 +56,11 @@ export const Posts: CollectionConfig = {
       required: true,
     },
     {
+      name: 'coverImage',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
       name: 'readingTime',
       type: 'text',
       defaultValue: '6 min read',
@@ -79,7 +84,7 @@ export const Posts: CollectionConfig = {
       type: 'textarea',
       required: true,
       admin: {
-        description: '支持 Markdown 风格纯文本，前台会按长文样式展示。',
+        description: '支持 Markdown、图片、YouTube、Bilibili，以及 [video] 视频块，前台会按博客长文样式展示。',
       },
     },
     {

@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    media: Media;
     posts: Post;
     docs: Doc;
     'payload-kv': PayloadKv;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     docs: DocsSelect<false> | DocsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -152,6 +154,43 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
 export interface Post {
@@ -160,11 +199,12 @@ export interface Post {
   slug: string;
   category?: ('产品思考' | '工程实践' | '案例拆解' | '发布日志') | null;
   excerpt: string;
+  coverImage?: (number | null) | Media;
   readingTime?: string | null;
   featured?: boolean | null;
   publishedAt?: string | null;
   /**
-   * 支持 Markdown 风格纯文本，前台会按长文样式展示。
+   * 支持 Markdown、图片、YouTube、Bilibili，以及 [video] 视频块，前台会按博客长文样式展示。
    */
   body: string;
   seoDescription?: string | null;
@@ -183,6 +223,9 @@ export interface Doc {
   section?: ('快速开始' | '产品文档' | '部署手册' | 'API 说明') | null;
   order?: number | null;
   summary: string;
+  /**
+   * 支持 Markdown。图片可写 ![说明](图片URL) 或直接贴图片链接；YouTube / Bilibili 可直接贴视频链接；双格式视频可写 [video] 后跟 webm: 和 mp4:。
+   */
   body: string;
   keywords?:
     | {
@@ -221,6 +264,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'posts';
@@ -298,6 +345,48 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -305,6 +394,7 @@ export interface PostsSelect<T extends boolean = true> {
   slug?: T;
   category?: T;
   excerpt?: T;
+  coverImage?: T;
   readingTime?: T;
   featured?: T;
   publishedAt?: T;
