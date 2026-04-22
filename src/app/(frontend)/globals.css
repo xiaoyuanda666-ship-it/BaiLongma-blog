@@ -472,6 +472,45 @@ a {
   margin: 0;
   line-height: 1.9;
   font-size: 17px;
+  white-space: pre-wrap;
+}
+
+.article-media {
+  margin: 6px 0;
+}
+
+.article-image {
+  display: grid;
+  gap: 12px;
+}
+
+.article-image img {
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid rgba(23, 36, 51, 0.08);
+  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.article-image figcaption {
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.article-embed {
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(23, 36, 51, 0.08);
+  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.article-embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 
 .doc-detail-shell {
@@ -565,5 +604,10 @@ a {
   .hero-actions,
   .cta-actions {
     width: 100%;
+  }
+
+  .article-image img,
+  .article-embed {
+    border-radius: 18px;
   }
 }

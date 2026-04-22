@@ -64,6 +64,10 @@ export const Docs: CollectionConfig = {
       name: 'body',
       type: 'textarea',
       required: true,
+      admin: {
+        description:
+          '支持纯文本段落，也支持单独一段的图片或视频嵌入。图片可写 ![说明](图片URL) 或直接贴图片链接；YouTube / Bilibili 可直接贴视频链接。',
+      },
     },
     {
       name: 'keywords',

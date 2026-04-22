@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import { getDocBySlug, getPublishedDocs } from '@/lib/content'
-import { splitParagraphs } from '@/lib/format'
+import { parseContentBlocks } from '@/lib/format'
 
 export default async function DocDetailPage({
   params,
@@ -41,9 +41,36 @@ export default async function DocDetailPage({
         <h1>{doc.title}</h1>
         <p className="article-excerpt">{doc.summary}</p>
         <div className="article-body">
-          {splitParagraphs(doc.body).map((paragraph, index) => (
-            <p key={`${doc.id}-${index}`}>{paragraph}</p>
-          ))}
+          {parseContentBlocks(doc.body).map((block, index) => {
+            if (block.type === 'image') {
+              return (
+                <figure key={`${doc.id}-${index}`} className="article-media article-image">
+                  <img src={block.src} alt={block.alt} loading="lazy" />
+                  {block.alt !== 'Document image' ? <figcaption>{block.alt}</figcaption> : null}
+                </figure>
+              )
+            }
+
+            if (block.type === 'embed') {
+              return (
+                <div
+                  key={`${doc.id}-${index}`}
+                  className={`article-media article-embed article-embed-${block.provider}`}
+                >
+                  <iframe
+                    src={block.src}
+                    title={block.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+              )
+            }
+
+            return <p key={`${doc.id}-${index}`}>{block.content}</p>
+          })}
         </div>
       </article>
     </div>
