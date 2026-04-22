@@ -1,3 +1,4 @@
+import type { Route } from 'next'
 import Link from 'next/link'
 
 import { getPublishedPosts } from '@/lib/content'
@@ -25,7 +26,7 @@ export default async function BlogPage() {
             <p>{post.excerpt}</p>
             <div className="listing-footer">
               <span>{post.readingTime || '6 min read'}</span>
-              <Link href={`/blog/${post.slug}`}>进入文章</Link>
+              <Link href={`/blog/${post.slug}` as Route}>进入文章</Link>
             </div>
           </article>
         ))}

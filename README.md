@@ -79,6 +79,14 @@ npm run dev
 
 第一次进入后台时，Payload 会引导你创建第一个管理员账号。
 
+如果本地使用的是全新数据库，且访问 `/admin` 时提示缺少表，可以先执行：
+
+```bash
+npm run migrate
+```
+
+再重新打开后台创建第一个管理员。
+
 ### 5. 可选：写入示例内容
 
 创建好 `.env` 后，可以访问：
@@ -137,8 +145,11 @@ http://localhost:3000/api/seed?token=你的 SEED_TOKEN
 适合单机 Linux 服务器：
 
 ```bash
+cp .env.example .env
+mkdir -p data
 npm install
 npm run build
+npm run migrate
 npm run start
 ```
 
@@ -154,6 +165,8 @@ npm run start
 pm2 start npm --name baillongma-blog -- run start
 pm2 save
 ```
+
+如果是第一次部署，务必先跑一次数据库迁移，再启动 PM2。否则会出现 SQLite 文件存在但 `users`、`posts`、`docs` 等表尚未创建，进而导致 `/admin` 或 SSR 页面报错。
 
 ### 方案二：Docker 部署
 

@@ -1,3 +1,4 @@
+import type { Route } from 'next'
 import Link from 'next/link'
 
 import { getPublishedDocs } from '@/lib/content'
@@ -31,7 +32,7 @@ export default async function DocsPage() {
               </div>
               <div className="docs-grid">
                 {sectionDocs.map((doc: any) => (
-                  <Link key={doc.id} href={`/docs/${doc.slug}`} className="doc-card">
+                  <Link key={doc.id} href={`/docs/${doc.slug}` as Route} className="doc-card">
                     <span>{doc.section}</span>
                     <strong>{doc.title}</strong>
                     <p>{doc.summary}</p>

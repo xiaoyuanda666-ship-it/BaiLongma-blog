@@ -8,6 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "migrate": "payload migrate --config payload.config.ts",
+    "migrate:fresh": "payload migrate:fresh --config payload.config.ts --forceAcceptWarning",
+    "migrate:status": "payload migrate:status --config payload.config.ts",
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importmap"
   },

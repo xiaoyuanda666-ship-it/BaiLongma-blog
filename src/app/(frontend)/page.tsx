@@ -1,6 +1,9 @@
+import type { Route } from 'next'
 import Link from 'next/link'
 
 import { getFeaturedPosts, getPublishedDocs, getSiteSettings } from '@/lib/content'
+
+const toRoute = (href: string | null | undefined, fallback: Route) => (href || fallback) as Route
 
 export default async function HomePage() {
   const [site, featuredPosts, docs] = await Promise.all([
@@ -19,10 +22,10 @@ export default async function HomePage() {
           <h1>{site.heroTitle}</h1>
           <p className="hero-copy">{site.heroDescription}</p>
           <div className="hero-actions">
-            <Link className="button primary" href={site.primaryHref || '/docs'}>
+            <Link className="button primary" href={toRoute(site.primaryHref, '/docs')}>
               {site.primaryLabel || '进入文档中心'}
             </Link>
-            <Link className="button secondary" href={site.secondaryHref || '/blog'}>
+            <Link className="button secondary" href={toRoute(site.secondaryHref, '/blog')}>
               {site.secondaryLabel || '阅读最新博客'}
             </Link>
           </div>
@@ -101,7 +104,7 @@ export default async function HomePage() {
                 <span className="mini-kicker">{post.category}</span>
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
-                <Link href={`/blog/${post.slug}`}>阅读全文</Link>
+                <Link href={`/blog/${post.slug}` as Route}>阅读全文</Link>
               </article>
             ))
           ) : (
@@ -124,7 +127,7 @@ export default async function HomePage() {
         </div>
         <div className="docs-grid">
           {featuredDocs.map((doc: any) => (
-            <Link key={doc.id} href={`/docs/${doc.slug}`} className="doc-card">
+            <Link key={doc.id} href={`/docs/${doc.slug}` as Route} className="doc-card">
               <span>{doc.section}</span>
               <strong>{doc.title}</strong>
               <p>{doc.summary}</p>
