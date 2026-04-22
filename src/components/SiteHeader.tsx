@@ -1,28 +1,33 @@
-import type { Route } from 'next'
+﻿import type { Route } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+const GITHUB_URL = 'https://github.com/xiaoyuanda666-ship-it/BaiLongma'
+
 export function SiteHeader() {
   return (
-    <header className="site-header">
-      <div className="shell nav-shell">
-        <Link className="brand" href={'/' as Route}>
+    <header className="site-header site-header-open">
+      <div className="shell nav-shell nav-shell-open">
+        <Link className="brand brand-open" href={'/' as Route}>
           <Image
             src="/brand/logo.png"
             alt="BaiLongma logo"
-            width={52}
-            height={52}
-            className="brand-logo"
+            width={64}
+            height={64}
+            className="brand-logo brand-logo-open"
           />
-          <span className="brand-copy">
+          <span className="brand-copy brand-copy-open">
             <strong>BaiLongma</strong>
-            <small>AI Agent Studio</small>
+            <small>一个会长出形状的 AI Agent</small>
           </span>
         </Link>
-        <nav className="main-nav" aria-label="主导航">
-          <Link href={'/' as Route} className="nav-pill">官网</Link>
-          <Link href={'/blog' as Route} className="nav-pill">博客</Link>
-          <Link href={'/docs' as Route} className="nav-pill">文档</Link>
+        <nav className="main-nav main-nav-open" aria-label="主导航">
+          <Link href={'/blog' as Route} className="nav-pill nav-pill-solid">
+            博客
+          </Link>
+          <a href={GITHUB_URL} className="nav-pill nav-pill-solid" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
         </nav>
       </div>
     </header>

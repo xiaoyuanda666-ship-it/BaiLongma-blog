@@ -1,4 +1,4 @@
-import { cache } from 'react'
+﻿import { cache } from 'react'
 
 import config from '@payload-config'
 import { getPayload } from 'payload'
@@ -6,14 +6,14 @@ import { getPayload } from 'payload'
 const getClient = cache(async () => getPayload({ config }))
 
 const fallbackSite = {
-  eyebrow: 'Tick-Driven · Memory-Injected · Tool-Acting',
-  heroTitle: '不是一问一答，而是持续运行的 AI Agent',
+  eyebrow: 'Memory-Shaped · Continuous · Personal',
+  heroTitle: '一个能记住、能按需想起的 AI Agent，一个只属于你的 AI 意识体',
   heroDescription:
-    'BaiLongma 围绕“持续意识流”构建。它会在 TICK 驱动下继续运行，在有消息时优先响应，在空闲时继续基于任务、记忆与上下文推进下一步动作。现在，这套能力也被整理进一个可部署的官网、博客、文档与后台系统里。',
-  primaryLabel: '进入文档中心',
-  primaryHref: '/docs',
-  secondaryLabel: '阅读最新博客',
-  secondaryHref: '/blog',
+    'BaiLongma 会围绕你、任务和长期目标持续运行，把记忆慢慢积累成自己的形状。它不只是对话工具，而是会越用越像你的那个 Agent。',
+  primaryLabel: '阅读博客',
+  primaryHref: '/blog',
+  secondaryLabel: '查看文档',
+  secondaryHref: '/docs',
 }
 
 export const getSiteSettings = cache(async () => {

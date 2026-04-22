@@ -1,4 +1,4 @@
-import type { GlobalConfig } from 'payload'
+﻿import type { GlobalConfig } from 'payload'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
@@ -9,38 +9,38 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'eyebrow',
       type: 'text',
-      defaultValue: 'Tick-Driven · Memory-Injected · Tool-Acting',
+      defaultValue: 'Memory-Shaped · Continuous · Personal',
     },
     {
       name: 'heroTitle',
       type: 'text',
-      defaultValue: '不是一问一答，而是持续运行的 AI Agent',
+      defaultValue: '一个能记住、能按需想起的 AI Agent，一个只属于你的 AI 意识体',
     },
     {
       name: 'heroDescription',
       type: 'textarea',
       defaultValue:
-        'BaiLongma 围绕“持续意识流”构建。它会在 TICK 驱动下继续运行，在有消息时优先响应，在空闲时继续基于任务、记忆与上下文推进下一步动作。现在，这套能力也被整理进一个可部署的官网、博客、文档与后台系统里。',
+        'BaiLongma 会围绕你、任务和长期目标持续运行，把记忆慢慢积累成自己的形状。它不只是对话工具，而是会越用越像你的那个 Agent。',
     },
     {
       name: 'primaryLabel',
       type: 'text',
-      defaultValue: '进入文档中心',
+      defaultValue: '阅读博客',
     },
     {
       name: 'primaryHref',
       type: 'text',
-      defaultValue: '/docs',
+      defaultValue: '/blog',
     },
     {
       name: 'secondaryLabel',
       type: 'text',
-      defaultValue: '阅读最新博客',
+      defaultValue: '查看文档',
     },
     {
       name: 'secondaryHref',
       type: 'text',
-      defaultValue: '/blog',
+      defaultValue: '/docs',
     },
   ],
 }
