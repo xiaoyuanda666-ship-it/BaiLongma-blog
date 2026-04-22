@@ -3,6 +3,8 @@ import Link from 'next/link'
 
 import { getFeaturedPosts, getPublishedDocs, getSiteSettings } from '@/lib/content'
 
+export const dynamic = 'force-dynamic'
+
 const toRoute = (href: string | null | undefined, fallback: Route) => (href || fallback) as Route
 
 export default async function HomePage() {

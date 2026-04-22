@@ -3,6 +3,8 @@ import Link from 'next/link'
 
 import { getPublishedDocs } from '@/lib/content'
 
+export const dynamic = 'force-dynamic'
+
 export default async function DocsPage() {
   const docs = await getPublishedDocs()
   const groups = docs.reduce<Record<string, any[]>>((acc, doc: any) => {
