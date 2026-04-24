@@ -7,8 +7,6 @@ import { getMediaUrl } from '@/lib/format'
 
 export const dynamic = 'force-dynamic'
 
-const GITHUB_URL = 'https://github.com/xiaoyuanda666-ship-it/BaiLongma'
-
 export default async function HomePage() {
   const [featuredPosts, docs] = await Promise.all([getFeaturedPosts(), getPublishedDocs()])
 
@@ -43,9 +41,9 @@ export default async function HomePage() {
             BaiLongma 不只是回答问题，而是会围绕你、任务和长期目标持续运行。它会积累记忆、按需想起、慢慢形成专属于你的意识网络。
           </p>
           <div className="hero-actions hero-actions-open">
-            <a className="button primary" href={GITHUB_URL} target="_blank" rel="noreferrer">
+            <Link className="button primary" href={'/download' as Route}>
               快速使用
-            </a>
+            </Link>
             <Link className="button secondary" href={'/docs' as Route}>
               查看文档
             </Link>
